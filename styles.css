@@ -130,12 +130,12 @@ body {
 /* IMAGE TEXT/CAPTIONS */
 .image-caption {
   margin-top: 14px;
-  /* hover logic */
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
+}
+
+.collection-photo:hover .image-caption,
+.collection-item:hover .image-caption {
+  opacity: 1;
+  visibility: visible;
 }
 
 .image-caption .location,
@@ -149,17 +149,6 @@ body {
 .image-caption .details,
 .subtitle {
   margin: 2px 0 0;
-}
-
-/* hover state */
-.collection-photo:hover .image-caption {
-  opacity: 1;
-  visibility: visible;
-}
-
-.collection-item:hover .image-caption {
-  opacity: 1;
-  visibility: visible;
 }
 
 .image-gallery .collection-name {
@@ -205,20 +194,17 @@ body {
   grid-row: 2;
 }
 
-/* .about-likes {
-  grid-column: 3 / 8;
-  grid-row: 3;
-} */
-
 .about-photo {
   grid-column: 6 / 12;
-  grid-row: 5 / span 3; /* overlaps the text rows */
+  grid-row: 5 / span 3;
   margin: 0;
+  min-width: 0; /* lets the grid column shrink below the image's natural width */
   transform: rotate(-2deg);
 }
 
 .about-photo img {
   max-height: 45dvh;
+  max-width: 100%; /* never wider than its column */
   width: auto;
 }
 
@@ -241,4 +227,104 @@ body {
 
 .about-bio p + p {
   margin-top: 1.4em;
+}
+
+/* ---------- TABLET (up to 900px) ---------- */
+@media (max-width: 900px) {
+  body {
+    padding: 32px 24px 60px;
+  }
+
+  .image-gallery,
+  .about {
+    padding: 60px 0 120px;
+  }
+
+  .image-gallery:has(.collection-item) {
+    padding-top: 100px; /* index */
+  }
+
+  /* collections: 2 columns instead of 3 */
+  .image-gallery--collection .gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* the scale-up would overflow the narrower columns */
+  .image-gallery--collection .collection-image--landscape {
+    transform: none;
+  }
+}
+
+/* ---------- PHONE (up to 600px) ---------- */
+@media (max-width: 600px) {
+  body {
+    padding: 24px 20px 40px;
+  }
+
+  .image-gallery {
+    padding: 40px 0 60px;
+  }
+
+  .image-gallery:has(.collection-item) {
+    padding-top: 60px;
+  }
+
+  /* INDEX: drop the stagger, stack the three collections */
+  .gallery-container:has(> .collection-item) {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 40px;
+  }
+
+  .gallery-container > .collection-item:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* COLLECTIONS: one column, photos at their natural shape */
+  .image-gallery--collection .gallery-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .image-gallery--collection .collection-image {
+    aspect-ratio: auto;
+  }
+
+  /* ABOUT: single column, photo still a little off-kilter */
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px 0 60px;
+  }
+
+  .about-photo {
+    width: 90%;
+    margin-left: auto;
+  }
+
+  .about-photo img {
+    width: 100%;
+    max-height: none;
+  }
+
+  /* FOOTER: scroll with the page instead of floating over photos */
+  .site-footer {
+    position: static;
+    color: var(--ink);
+    mix-blend-mode: normal;
+  }
+}
+
+/* hide captions until hover, desktop-sized screens that can hover */
+@media (hover: hover) and (min-width: 901px) {
+  .image-caption {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
 }
