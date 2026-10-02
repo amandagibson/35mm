@@ -1,3 +1,5 @@
-### A portfolio displaying some of my film photography built iwth vanilla HTML and CSS
+## 35mm film photography portfolio
 
-deployed at https://agibson35mm.netlify.app/
+Built with HTML and CSS.
+
+Deployed at https://agibson35mm.netlify.app/
