@@ -17,3 +17,11 @@ https://github.com/user-attachments/assets/2a7d0c9c-44c2-42e4-9a1f-f06cb09273b1
 ### Mobile
 
 https://github.com/user-attachments/assets/76e546e2-3187-4674-9b3a-acfff3fe3722
+
+
+Copyright © 2026 Amanda Gibson. All rights reserved.
+
+The photographs, text, and site content in this repository may not be
+copied, reproduced, distributed, modified, or used, in whole or in part,
+including for training or fine-tuning machine learning or AI models,
+without prior written permission.
